@@ -1,1 +1,335 @@
-Netlify Drop
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolverine — Intranasal Protocol</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #060508;
+            color: #b8a080;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(ellipse at 50% 0%, rgba(180,130,50,0.07) 0%, transparent 65%),
+                radial-gradient(ellipse at 85% 90%, rgba(180,130,50,0.04) 0%, transparent 55%);
+            background-attachment: fixed;
+        }
+        .hero {
+            text-align: center;
+            padding: 70px 25px 50px;
+        }
+        .hero .sigil {
+            font-size: 3.5rem;
+            color: rgba(180,130,50,0.22);
+            margin-bottom: 18px;
+            text-shadow: 0 0 50px rgba(180,130,50,0.08);
+        }
+        .hero .badge {
+            display: inline-block;
+            border: 1px solid rgba(180,130,50,0.3);
+            color: rgba(180,130,50,0.55);
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            padding: 5px 20px;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 6.5vw, 3.2rem);
+            font-weight: 300;
+            color: #c9a040;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(180,130,50,0.15);
+            margin-bottom: 6px;
+        }
+        .hero .subtitle {
+            font-size: 0.7rem;
+            color: rgba(180,130,50,0.4);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .container {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 20px 25px;
+        }
+        .card {
+            border: 1px solid rgba(180,130,50,0.1);
+            background: rgba(10,8,12,0.75);
+            backdrop-filter: blur(3px);
+            padding: 28px 25px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 35px rgba(0,0,0,0.5);
+        }
+        .card h3 {
+            color: #c9a040;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(180,130,50,0.06);
+            font-size: 0.75rem;
+        }
+        .spec-label {
+            color: rgba(180,130,50,0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .spec-value {
+            color: #ddd;
+            letter-spacing: 1px;
+        }
+        .math-box {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(180,130,50,0.1);
+            padding: 16px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .math-box .equation {
+            font-family: 'Courier New', monospace;
+            color: #c9a040;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+        .math-box .result {
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+        .math-box .note {
+            color: rgba(180,130,50,0.3);
+            font-size: 0.5rem;
+            letter-spacing: 2px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+        .divider {
+            text-align: center;
+            padding: 22px 0;
+            color: rgba(180,130,50,0.15);
+            letter-spacing: 8px;
+            font-size: 0.6rem;
+        }
+        .section-tag {
+            text-align: center;
+            font-size: 0.55rem;
+            letter-spacing: 5px;
+            color: rgba(180,130,50,0.35);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            padding: 3px 0;
+            border-top: 1px solid rgba(180,130,50,0.08);
+            border-bottom: 1px solid rgba(180,130,50,0.08);
+        }
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefit-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(180,130,50,0.04);
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+        .benefit-list li::before {
+            content: '◈ ';
+            color: rgba(180,130,50,0.25);
+        }
+        .timeline-row {
+            display: flex;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(180,130,50,0.04);
+            font-size: 0.7rem;
+        }
+        .timeline-time {
+            color: rgba(180,130,50,0.5);
+            width: 100px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .timeline-effect {
+            color: #aaa;
+        }
+        .sanctum-block {
+            border: 1px solid rgba(180,130,50,0.14);
+            background: rgba(6,4,8,0.85);
+            padding: 30px 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .sanctum-block .icon {
+            font-size: 2.5rem;
+            color: rgba(180,130,50,0.18);
+            margin-bottom: 15px;
+        }
+        .sanctum-block p {
+            font-size: 0.7rem;
+            color: rgba(180,130,50,0.5);
+            letter-spacing: 1px;
+            line-height: 1.9;
+        }
+        .sanctum-block .hl {
+            color: #c9a040;
+            font-weight: bold;
+        }
+        .disclaimer {
+            text-align: center;
+            color: rgba(180,130,50,0.2);
+            font-size: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 25px 15px;
+            line-height: 1.5;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px 50px;
+            border-top: 1px solid rgba(180,130,50,0.08);
+        }
+        footer .foot-msg {
+            font-size: 0.8rem;
+            color: rgba(180,130,50,0.45);
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        footer .foot-sub {
+            font-size: 0.6rem;
+            color: rgba(180,130,50,0.2);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="sigil">✠</div>
+        <div class="badge">You Have Been Invited</div>
+        <h1>WOLVERINE</h1>
+        <p class="subtitle">BPC-157 · TB-500 · Intranasal Protocol</p>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>◈ Composition</h3>
+            <div class="spec-row">
+                <span class="spec-label">Primary Agent</span>
+                <span class="spec-value">BPC-157</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Secondary Agent</span>
+                <span class="spec-value">TB-500</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Total Mass</span>
+                <span class="spec-value">20 mg</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Route</span>
+                <span class="spec-value">Intranasal</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Carrier</span>
+                <span class="spec-value">Bacteriostatic Water</span>
+            </div>
+            <div class="math-box">
+                <div class="equation">20 mg &divide; 6 mL &times; 0.1 mL</div>
+                <div class="result">&asymp; 167 mcg per spray</div>
+                <div class="note">Per compound &middot; Metered dose &middot; 0.1 mL</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>◈ Protocol</h3>
+            <div class="spec-row">
+                <span class="spec-label">Loading Phase</span>
+                <span class="spec-value">2 sprays &middot; 334 mcg &middot; 2&times; daily</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Standard</span>
+                <span class="spec-value">1&ndash;2 sprays &middot; 167&ndash;334 mcg &middot; 2&times; daily</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Maintenance</span>
+                <span class="spec-value">1 spray &middot; 167 mcg &middot; 2&times; daily</span>
+            </div>
+        </div>
+
+        <div class="divider">◈ ◈ ◈</div>
+        <p class="section-tag">Reported Effects</p>
+
+        <div class="card" style="padding:20px 25px;">
+            <ul class="benefit-list">
+                <li>Rapid mental clarity within hours</li>
+                <li>Brain fog dissolved by day three</li>
+                <li>Emotional resilience and calm</li>
+                <li>Soft tissue and nerve repair accelerated</li>
+                <li>Deep restorative sleep restored</li>
+                <li>Systemic inflammation reduced</li>
+                <li>Physical recovery shortened</li>
+                <li>Sustained focus under pressure</li>
+            </ul>
+        </div>
+
+        <div class="divider">◈ ◈ ◈</div>
+        <p class="section-tag">Anticipated Progression</p>
+
+        <div class="card" style="padding:20px 25px;">
+            <div class="timeline-row">
+                <span class="timeline-time">First Use</span>
+                <span class="timeline-effect">Subtle clarity. Protective calm.</span>
+            </div>
+            <div class="timeline-row">
+                <span class="timeline-time">Day 1&ndash;3</span>
+                <span class="timeline-effect">Quiet mind. Lightened mood.</span>
+            </div>
+            <div class="timeline-row">
+                <span class="timeline-time">Day 4&ndash;7</span>
+                <span class="timeline-effect">Sharpened focus. Deepened sleep.</span>
+            </div>
+            <div class="timeline-row">
+                <span class="timeline-time">Week 2&plus;</span>
+                <span class="timeline-effect">Cumulative repair. Peak clarity.</span>
+            </div>
+        </div>
+
+        <div class="sanctum-block">
+            <div class="icon">✠</div>
+            <p>This protocol is <span class="hl">not publicly available</span>. It operates under the watch of <span class="hl">La Sant&iacute;sima</span> and is distributed exclusively through a private network. Those granted access are positioned ahead of the broader market. As the circle expands, entry will narrow. You were brought here because someone deemed you ready. <span class="hl">Do not waste the invitation.</span></p>
+        </div>
+
+        <p class="disclaimer">
+            For investigational research purposes only. Not evaluated by the FDA. Not intended to diagnose, treat, cure, or prevent any disease. Animal studies and anecdotal reports only. No human clinical trials confirm these effects. Use at your own discretion. Protected under the watch of La Sant&iacute;sima. Enter with respect.
+        </p>
+
+    </div>
+
+    <footer>
+        <p class="foot-msg">Under the watch of La Sant&iacute;sima. Access is limited. Knowledge is leverage.</p>
+        <p class="foot-sub">Stay ahead. Stay inside. Stay protected.</p>
+    </footer>
+
+</body>
+</html>
